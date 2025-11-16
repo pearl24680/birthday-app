@@ -31,10 +31,9 @@ body {
 }
 </style>
 """
-
 st.markdown(page_bg, unsafe_allow_html=True)
 
-# Create floating stars
+# CREATE FLOATING STARS
 for i in range(20):
     st.markdown(
         f"""
@@ -48,7 +47,7 @@ for i in range(20):
     )
 
 # ------------------------------------------------------
-# HEADING
+# TITLE
 # ------------------------------------------------------
 st.markdown(
     """
@@ -60,12 +59,12 @@ st.markdown(
 )
 
 # ------------------------------------------------------
-# ASK NAME
+# NAME INPUT
 # ------------------------------------------------------
 name = st.text_input("Enter the name for birthday wish:")
 
 # ------------------------------------------------------
-# CARD ONLY BIRTHDAY WISHES
+# BIRTHDAY CARD SECTION
 # ------------------------------------------------------
 if name:
     st.markdown(
@@ -94,7 +93,7 @@ if name:
         unsafe_allow_html=True
     )
 
-    # Balloons animation
+    # Balloons
     if st.button("🎈 Release Balloons!"):
         st.balloons()
 
@@ -105,7 +104,7 @@ st.markdown(
     """
     <br><br>
     <p style="text-align:center; color:#005fa3; font-weight:600;">
-        💙 Made  by Pearl for u dost💙
+        💙 Made with love by Pearl 💙
     </p>
     """,
     unsafe_allow_html=True
