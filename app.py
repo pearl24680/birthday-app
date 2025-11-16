@@ -7,7 +7,7 @@
     body {
         width: 210mm;
         height: 297mm;
-        margin: 0;
+        margin: 0; 
         padding: 40px;
         font-family: "Arial", sans-serif;
         text-align: center;
