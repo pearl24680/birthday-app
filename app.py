@@ -1,45 +1,42 @@
 import streamlit as st
 
-# --------------------------
+# ------------------------------------------------------
 # PAGE CONFIG
-# --------------------------
-st.set_page_config(
-    page_title="Birthday Wish",
-    layout="centered"
-)
+# ------------------------------------------------------
+st.set_page_config(page_title="Birthday Wish", layout="centered")
 
-# --------------------------
+# ------------------------------------------------------
 # LIGHT BLUE BACKGROUND
-# --------------------------
+# ------------------------------------------------------
 page_bg = """
 <style>
 body {
-    background-color: #dff3ff !important;
+    background-color: blue !important;
 }
 </style>
 """
 st.markdown(page_bg, unsafe_allow_html=True)
 
-# --------------------------
+# ------------------------------------------------------
 # HEADING
-# --------------------------
+# ------------------------------------------------------
 st.markdown(
     """
-    <h1 style="text-align:center; color:#0077cc;">
+    <h1 style="text-align:center; color:#0077cc; font-size:45px;">
         🎉 Cute Birthday Wish Generator 🎉
     </h1>
     """,
     unsafe_allow_html=True
 )
 
-# --------------------------
-# ASK NAME
-# --------------------------
-name = st.text_input("Enter the name for birthday wish:")
+# ------------------------------------------------------
+# NAME INPUT
+# ------------------------------------------------------
+name = st.text_input("Enter the name for the birthday wish:")
 
-# --------------------------
-# SHOW CARD
-# --------------------------
+# ------------------------------------------------------
+# CARD DISPLAY
+# ------------------------------------------------------
 if name:
     st.markdown(
         f"""
@@ -74,12 +71,13 @@ if name:
         unsafe_allow_html=True
     )
 
-    if st.button("🎈 Release Balloons!"):
+    # Balloon Animation
+    if st.button("🎈 Release Balloons! 🎈"):
         st.balloons()
 
-# --------------------------
+# ------------------------------------------------------
 # FOOTER
-# --------------------------
+# ------------------------------------------------------
 st.markdown(
     """
     <br><br>
