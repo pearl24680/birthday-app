@@ -1,3 +1,8 @@
+from flask import Flask, render_template_string
+
+app = Flask(__name__)
+
+html_card = """
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,13 +10,14 @@
 <title>Birthday Card</title>
 <style>
     body {
-        width: 21mm;
+        width: 210mm;
         height: 297mm;
-        margin: 0; 
+        margin: 0;
         padding: 40px;
         font-family: "Arial", sans-serif;
         text-align: center;
         border: 3px solid #008cff;
+        box-sizing: border-box;
     }
     h1 {
         color: #008cff;
@@ -45,3 +51,11 @@
     </div>
 </body>
 </html>
+"""
+
+@app.route("/")
+def card():
+    return render_template_string(html_card)
+
+if __name__ == "__main__":
+    app.run(debug=True)
