@@ -1,122 +1,158 @@
 import streamlit as st
-import random
-import time
+import base64
 
-st.set_page_config(page_title="Birthday Card", layout="wide")
+# --------------------------
+# PAGE CONFIG
+# --------------------------
+st.set_page_config(
+    page_title="Cute Birthday Wish",
+    layout="centered"
+)
 
-# --- CSS Birthday Card Design ---
-st.markdown("""
+# --------------------------
+# GLOBAL PINK BACKGROUND
+# --------------------------
+page_bg = """
 <style>
-
 body {
-    background: linear-gradient(135deg,#f6d365,#fda085,#fbc2eb,#a6c1ee);
-    background-size: 500% 500%;
-    animation: bgAnimation 12s ease infinite;
+    background-color: #ffdef2 !important;
 }
-
-@keyframes bgAnimation {
-    0% {background-position: 0% 50%;}
-    50% {background-position: 100% 50%;}
-    100% {background-position: 0% 50%;}
-}
-
-.card {
-    width: 55%;
-    margin: auto;
-    margin-top: 80px;
-    padding: 30px;
-    background: rgba(255,255,255,0.25);
-    border-radius: 25px;
-    backdrop-filter: blur(12px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-    text-align: center;
-    animation: fadeIn 1.5s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from {opacity: 0; transform: translateY(40px);}
-    to {opacity: 1; transform: translateY(0);}
-}
-
-.title {
-    font-size: 55px;
-    font-weight: bold;
-    color: #fff;
-    text-shadow: 2px 2px 10px #5e5e5e;
-}
-
-.name {
-    color: #ffeb3b;
-    font-size: 58px;
-    text-shadow: 2px 2px 15px black;
-}
-
-.message {
-    font-size: 24px;
-    color: white;
-    margin-top: 15px;
-}
-
-.balloon {
-    position: absolute;
-    animation: floatUp 8s infinite ease-in;
-    opacity: 0.85;
-}
-
-@keyframes floatUp {
-    0% {transform: translateY(300px);}
-    100% {transform: translateY(-600px);}
-}
-
-.footer {
-    position: fixed;
-    bottom: 15px;
-    width: 100%;
-    text-align: center;
-    color: white;
-    font-size: 20px;
-}
-
 </style>
-""", unsafe_allow_html=True)
+"""
+st.markdown(page_bg, unsafe_allow_html=True)
 
-# --- UI Input ---
-st.markdown("## 🎂 Enter Your Name to Generate Birthday Card")
-name = st.text_input("Your Name:")
-btn = st.button("Create Birthday Card")
+# --------------------------
+# NAVBAR
+# --------------------------
+navbar = """
+<style>
+.navbar {
+    background: white;
+    padding: 12px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    font-size: 20px;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    margin-bottom: 25px;
+}
+.navbar a {
+    text-decoration: none;
+    color: #ff4fa2;
+}
+.navbar a:hover {
+    color: #d60073;
+}
+</style>
 
-if btn and name.strip() != "":
-    
-    # --- Birthday Card ---
-    st.markdown(f"""
-    <div class="card">
-        <div class="title">🎉 Happy Birthday</div>
-        <div class="name">{name}</div>
-        <div class="message">Wishing you a year full of joy, success and beautiful memories! 💛</div>
-    </div>
-    """, unsafe_allow_html=True)
+<div class="navbar">
+    <a href="?page=home">Home</a>
+    <a href="?page=wish">Make a Wish</a>
+    <a href="?page=upload">Upload Photo</a>
+</div>
+"""
+st.markdown(navbar, unsafe_allow_html=True)
 
-    # --- Balloons Animation ---
-    for i in range(20):
-        x = random.randint(5, 95)
-        size = random.randint(50, 90)
-        color = random.choice(["#ff4b5c", "#ffcd3c", "#4cd3c2", "#7efff5", "#ff6ec7"])
+# READ PAGE PARAM
+page = st.query_params.get("page", "home")
 
+# --------------------------
+# BALLOON ANIMATION BUTTON
+# --------------------------
+def balloon_button():
+    if st.button("🎈 Release Balloons! 🎈"):
+        st.balloons()
+
+# --------------------------
+# HOME PAGE
+# --------------------------
+if page == "home":
+    st.markdown(
+        """
+        <div style="
+            background:white;
+            padding:30px;
+            border-radius:25px;
+            text-align:center;
+            box-shadow:0 5px 20px rgba(0,0,0,0.2);
+        ">
+            <h1 style="color:#ff2e93;">🎀 Welcome to the Birthday Wishes 🎀</h1>
+            <p style="font-size:20px;color:#444;">
+                Create cute animated birthday wishes for your friends!
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    balloon_button()
+
+# --------------------------
+# WISH PAGE
+# --------------------------
+elif page == "wish":
+
+    st.markdown(
+        """
+        <h2 style="text-align:center;color:#ff2e93;">💗 Create Cute Birthday Wish 💗</h2>
+        """,
+        unsafe_allow_html=True
+    )
+
+    name = st.text_input("Enter Name:")
+
+    if name:
         st.markdown(
             f"""
-            <div class="balloon" style="
-                left:{x}%;
-                width:{size}px;
-                height:{int(size*1.3)}px;
-                background:{color};
-                border-radius:50%;
-            "></div>
+            <div style="
+                background:white;
+                padding:30px;
+                border-radius:25px;
+                text-align:center;
+                margin-top:20px;
+                box-shadow:0 4px 15px rgba(0,0,0,0.2);
+                ">
+                
+                <h1 style="color:#ff2e93; font-size:40px;">🎉 Happy Birthday {name}! 🎉</h1>
+                
+                <p style="font-size:22px; color:#444;">
+                    Wishing you lots of joy, smiles, surprises & love 💕<br>
+                    Have a magical and unforgettable day!
+                </p>
+            </div>
             """,
             unsafe_allow_html=True
         )
-        time.sleep(0.15)
 
-# Footer
-st.markdown("""
-<div class="footer">Made by <b>Pearl</b></div>
-""", unsafe_allow_html=True)
+        balloon_button()
+
+# --------------------------
+# UPLOAD PHOTO PAGE
+# --------------------------
+elif page == "upload":
+
+    st.markdown(
+        """
+        <h2 style="text-align:center;color:#ff2e93;">📸 Upload a Cute Photo</h2>
+        """,
+        unsafe_allow_html=True
+    )
+
+    img = st.file_uploader("Upload Photo", type=["png", "jpg", "jpeg"])
+
+    if img:
+        st.image(img, caption="Your Uploaded Photo", use_container_width=True)
+
+# --------------------------
+# FOOTER
+# --------------------------
+st.markdown(
+    """
+    <br><br>
+    <p style="text-align:center; color:#ff0d6a; font-weight:600;">
+        🌸 Made with love by Pearl 🌸
+    </p>
+    """,
+    unsafe_allow_html=True
+)
