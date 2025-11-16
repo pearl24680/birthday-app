@@ -1,61 +1,89 @@
-from flask import Flask, render_template_string
+import streamlit as st
 
-app = Flask(__name__)
+st.set_page_config(page_title="Emotional Birthday Card", layout="centered")
 
-html_card = """
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Birthday Card</title>
+# Soft animated background
+st.markdown("""
 <style>
-    body {
-        width: 210mm;
-        height: 297mm;
-        margin: 0;
-        padding: 40px;
-        font-family: "Arial", sans-serif;
-        text-align: center;
-        border: 3px solid #008cff;
-        box-sizing: border-box;
-    }
-    h1 {
-        color: #008cff;
-        font-size: 40px;
-        margin-top: 40px;
-    }
-    p {
-        font-size: 22px;
-        color: #333;
-        margin: 25px 0;
-        line-height: 1.5;
-    }
-    .footer {
-        margin-top: 120px;
-        font-size: 18px;
-        color: #555;
-    }
+body {
+    background: linear-gradient(180deg, #d7edff, #f0f6ff);
+    animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+/* Falling stars */
+.star {
+    position: fixed;
+    top: -10px;
+    width: 8px;
+    height: 8px;
+    background: #a1c7ff;
+    border-radius: 50%;
+    animation: fall linear infinite;
+    opacity: 0.8;
+}
+@keyframes fall {
+    0% {transform: translateY(0) scale(1);}
+    100% {transform: translateY(120vh) scale(0.3);}
+}
 </style>
-</head>
+""", unsafe_allow_html=True)
 
-<body>
-    <h1>🎉 Happy Birthday! 🎉</h1>
+# Create falling stars
+for i in range(15):
+    st.markdown(
+        f"<div class='star' style='left:{i*6}%; animation-duration:{3+i%5}s; animation-delay:{i*0.3}s;'></div>",
+        unsafe_allow_html=True
+    )
 
-    <p>
-        Wishing you a beautiful day filled with joy and smiles.<br>
-        May God bless you always and bring happiness into your life. 💙✨
+# A4 Card Content
+card = """
+<div style="
+    width: 210mm;
+    min-height: 297mm;
+    padding: 50px;
+    margin-top: 30px;
+    background: white;
+    border-radius: 25px;
+    border: 3px solid #82bfff;
+    box-shadow: 0 0 25px #bddbff;
+    text-align: center;
+    font-family: 'Georgia', serif;
+">
+
+    <h1 style="color:#008cff; font-size:46px; margin-bottom:10px;">
+        🎉 Happy Birthday 🌸
+    </h1>
+
+    <p style="
+        font-size:24px;
+        color:#34495e;
+        line-height:1.8;
+        margin-top:35px;
+        padding: 10px 20px;
+    ">
+        Today is not just another day…<br>
+        It is the day the world received a gentle, kind, beautiful soul. 💙<br><br>
+
+        May your heart always find reasons to smile,<br>
+        may your dreams unfold beautifully,<br>
+        and may God bless you with peace, love, and warmth<br>
+        in every step of your journey. ✨<br><br>
+
+        You deserve all the happiness in the universe.<br>
+        I hope this birthday brings you tears of joy<br>
+        and a heart full of soft, glowing feelings. 💫💙
     </p>
 
-    <div class="footer">
-        — Made by Pearl —
-    </div>
-</body>
-</html>
+    <p style="margin-top:120px; font-size:20px; color:#555;">
+        — Made with love by <b>Pearl</b> —
+    </p>
+
+</div>
 """
 
-@app.route("/")
-def card():
-    return render_template_string(html_card)
-
-if __name__ == "__main__":
-    app.run(debug=True)
+st.markdown(card, unsafe_allow_html=True)
