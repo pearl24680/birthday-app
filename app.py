@@ -23,13 +23,13 @@ if name:
             Today is not just another day…<br>
             It is the day the world received a gentle, kind, beautiful soul. 💙<br><br>
 
-            May your heart always find reasons to smile,<br>
-            may your dreams unfold beautifully,<br>
-            and may God bless you with peace, love, and warmth<br>
-            in every step of your journey. ✨<br><br>
+            May your heart always find reasons to smile,
+            may your dreams unfold beautifully,
+            and may God bless you with peace, love, and warmth
+            in every step of your journey. ✨
 
-            You deserve all the happiness in the universe.<br>
-            I hope this birthday brings you tears of joy<br>
+            You deserve all the happiness in the universe.
+            I hope this birthday brings you tears of joy
             and a heart full of soft, glowing feelings. 💫💙
         </p>
 
