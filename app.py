@@ -1,111 +1,47 @@
-import streamlit as st
-
-# ------------------------------------------------------
-# PAGE CONFIG
-# ------------------------------------------------------
-st.set_page_config(page_title="Birthday Wish", layout="centered")
-
-# ------------------------------------------------------
-# LIGHT BLUE BACKGROUND
-# ------------------------------------------------------
-page_bg = """
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Birthday Card</title>
 <style>
-body {
-    background-color: #dff3ff !important;
-}
-
-/* STAR ANIMATION */
-.star {
-  position: fixed;
-  width: 6px;
-  height: 6px;
-  background: white;
-  border-radius: 50%;
-  animation: twinkle 1.6s infinite ease-in-out;
-}
-
-@keyframes twinkle {
-  0% { opacity: 0.2; transform: scale(0.8); }
-  50% { opacity: 1; transform: scale(1.3); }
-  100% { opacity: 0.2; transform: scale(0.8); }
-}
+    body {
+        width: 210mm;
+        height: 297mm;
+        margin: 0;
+        padding: 40px;
+        font-family: "Arial", sans-serif;
+        text-align: center;
+        border: 3px solid #008cff;
+    }
+    h1 {
+        color: #008cff;
+        font-size: 40px;
+        margin-top: 40px;
+    }
+    p {
+        font-size: 22px;
+        color: #333;
+        margin: 25px 0;
+        line-height: 1.5;
+    }
+    .footer {
+        margin-top: 120px;
+        font-size: 18px;
+        color: #555;
+    }
 </style>
-"""
-st.markdown(page_bg, unsafe_allow_html=True)
+</head>
 
-# CREATE FLOATING STARS
-for i in range(20):
-    st.markdown(
-        f"""
-        <div class="star" style="
-            top:{5*i+10}px;
-            left:{15*i+20}px;
-            animation-delay:{i*0.2}s;">
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+<body>
+    <h1>🎉 Happy Birthday! 🎉</h1>
 
-# ------------------------------------------------------
-# TITLE
-# ------------------------------------------------------
-st.markdown(
-    """
-    <h1 style="text-align:center; color:#0077cc; font-size:45px;">
-        🎉 Beautiful Birthday Wish Generator 🎉
-    </h1>
-    """,
-    unsafe_allow_html=True
-)
-
-# ------------------------------------------------------
-# NAME INPUT
-# ------------------------------------------------------
-name = st.text_input("Enter the name for birthday wish:")
-
-# ------------------------------------------------------
-# BIRTHDAY CARD SECTION
-# ------------------------------------------------------
-if name:
-    st.markdown(
-        f"""
-        <div style="
-            background:white;
-            padding:30px;
-            border-radius:25px;
-            text-align:center;
-            margin-top:30px;
-            box-shadow:0 6px 20px rgba(0,0,0,0.3);
-            border:4px solid #6ec6ff;
-        ">
-
-            <h1 style="color:#008cff; font-size:42px;">
-                🎈 Happy Birthday {name}! 🎈
-            </h1>
-
-            <p style="font-size:24px; color:#444; margin-top:15px;">
-                Wishing you a day filled with joy, love, laughter, and endless happiness.<br>
-                May all your dreams shine as bright as the stars above! ⭐💙
-            </p>
-
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-    # Balloons
-    if st.button("🎈 Release Balloons!"):
-        st.balloons()
-
-# ------------------------------------------------------
-# FOOTER
-# ------------------------------------------------------
-st.markdown(
-    """
-    <br><br>
-    <p style="text-align:center; color:#005fa3; font-weight:600;">
-        💙 Made with love by Pearl 💙
+    <p>
+        Wishing you a beautiful day filled with joy and smiles.<br>
+        May God bless you always and bring happiness into your life. 💙✨
     </p>
-    """,
-    unsafe_allow_html=True
-)
+
+    <div class="footer">
+        — Made by Pearl —
+    </div>
+</body>
+</html>
