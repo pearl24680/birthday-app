@@ -5,7 +5,7 @@
 <title>Birthday Card</title>
 <style>
     body {
-        width: 210mm;
+        width: 21mm;
         height: 297mm;
         margin: 0; 
         padding: 40px;
