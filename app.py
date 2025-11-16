@@ -4,10 +4,8 @@ st.set_page_config(page_title="Birthday Card", layout="centered")
 
 st.title("💙 Birthday Card Generator")
 
-# Ask the user's name
-name = st.text_input("Enter the birthday person's name:")
+name = st.text_input("Enter name:")
 
-# Only show the card after name is entered
 if name:
     st.markdown(
         f"""
