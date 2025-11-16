@@ -11,11 +11,41 @@ st.set_page_config(page_title="Birthday Wish", layout="centered")
 page_bg = """
 <style>
 body {
-    background-color: blue !important;
+    background-color: #dff3ff !important;
+}
+
+/* STAR ANIMATION */
+.star {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 1.6s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.3); }
+  100% { opacity: 0.2; transform: scale(0.8); }
 }
 </style>
 """
+
 st.markdown(page_bg, unsafe_allow_html=True)
+
+# Create floating stars
+for i in range(20):
+    st.markdown(
+        f"""
+        <div class="star" style="
+            top:{5*i+10}px;
+            left:{15*i+20}px;
+            animation-delay:{i*0.2}s;">
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
 # ------------------------------------------------------
 # HEADING
@@ -23,56 +53,49 @@ st.markdown(page_bg, unsafe_allow_html=True)
 st.markdown(
     """
     <h1 style="text-align:center; color:#0077cc; font-size:45px;">
-        🎉 Cute Birthday Wish Generator 🎉
+        🎉 Beautiful Birthday Wish Generator 🎉
     </h1>
     """,
     unsafe_allow_html=True
 )
 
 # ------------------------------------------------------
-# NAME INPUT
+# ASK NAME
 # ------------------------------------------------------
-name = st.text_input("Enter the name for the birthday wish:")
+name = st.text_input("Enter the name for birthday wish:")
 
 # ------------------------------------------------------
-# CARD DISPLAY
+# CARD ONLY BIRTHDAY WISHES
 # ------------------------------------------------------
 if name:
     st.markdown(
         f"""
         <div style="
             background:white;
-            padding:25px;
-            border-radius:20px;
+            padding:30px;
+            border-radius:25px;
             text-align:center;
-            margin-top:25px;
-            box-shadow:0 6px 20px rgba(0,0,0,0.25);
-            border:3px solid #5ab4ff;
+            margin-top:30px;
+            box-shadow:0 6px 20px rgba(0,0,0,0.3);
+            border:4px solid #6ec6ff;
         ">
 
-            <h1 style="color:#008cff; font-size:40px;">
+            <h1 style="color:#008cff; font-size:42px;">
                 🎈 Happy Birthday {name}! 🎈
             </h1>
 
-            <img src="https://i.pinimg.com/originals/48/ef/05/48ef05e8f302ff628f6ba674fbec6ff3.png"
-                width="220" alt="Doraemon">
-
-            <p style="font-size:22px; color:#333; margin-top:15px;">
-                May your special day be filled with<br>
-                fun, excitement and smiles just like<br>
-                <b>Doraemon, Cars & Hot Wheels adventures!</b> 🚗💨💙
+            <p style="font-size:24px; color:#444; margin-top:15px;">
+                Wishing you a day filled with joy, love, laughter, and endless happiness.<br>
+                May all your dreams shine as bright as the stars above! ⭐💙
             </p>
-
-            <img src="https://i.pinimg.com/originals/36/e0/f1/36e0f117d1691e6c59e43db3cdbe13b1.png"
-                width="250" alt="Hotwheels">
 
         </div>
         """,
         unsafe_allow_html=True
     )
 
-    # Balloon Animation
-    if st.button("🎈 Release Balloons! 🎈"):
+    # Balloons animation
+    if st.button("🎈 Release Balloons!"):
         st.balloons()
 
 # ------------------------------------------------------
@@ -82,7 +105,7 @@ st.markdown(
     """
     <br><br>
     <p style="text-align:center; color:#005fa3; font-weight:600;">
-        💙 Made by Pearl 💙
+        💙 Made  by Pearl for u dost💙
     </p>
     """,
     unsafe_allow_html=True
