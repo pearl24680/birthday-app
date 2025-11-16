@@ -2,14 +2,14 @@ import streamlit as st
 import random
 import time
 
-st.set_page_config(page_title="Happy Birthday", layout="wide")
+st.set_page_config(page_title="Birthday Card", layout="wide")
 
-# --- CSS + Animations ---
+# --- CSS Birthday Card Design ---
 st.markdown("""
 <style>
 
 body {
-    background: linear-gradient(135deg,#ff9a9e,#fad0c4,#fbc2eb,#a18cd1);
+    background: linear-gradient(135deg,#f6d365,#fda085,#fbc2eb,#a6c1ee);
     background-size: 500% 500%;
     animation: bgAnimation 12s ease infinite;
 }
@@ -20,71 +20,101 @@ body {
     100% {background-position: 0% 50%;}
 }
 
-.title {
-    font-size: 60px;
+.card {
+    width: 55%;
+    margin: auto;
+    margin-top: 80px;
+    padding: 30px;
+    background: rgba(255,255,255,0.25);
+    border-radius: 25px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
     text-align: center;
-    color: white;
-    text-shadow: 3px 3px 20px black;
-    animation: pop 2s infinite alternate;
+    animation: fadeIn 1.5s ease-in-out;
 }
 
-@keyframes pop {
-    from {transform: scale(1);}
-    to {transform: scale(1.18);}
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(40px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+.title {
+    font-size: 55px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 2px 2px 10px #5e5e5e;
 }
 
 .name {
-    color: yellow;
-    font-size: 65px;
+    color: #ffeb3b;
+    font-size: 58px;
+    text-shadow: 2px 2px 15px black;
+}
+
+.message {
+    font-size: 24px;
+    color: white;
+    margin-top: 15px;
 }
 
 .balloon {
     position: absolute;
-    animation: floatUp 7s infinite ease-in;
+    animation: floatUp 8s infinite ease-in;
+    opacity: 0.85;
 }
 
 @keyframes floatUp {
     0% {transform: translateY(300px);}
-    100% {transform: translateY(-500px);}
+    100% {transform: translateY(-600px);}
 }
 
 .footer {
     position: fixed;
-    bottom: 10px;
+    bottom: 15px;
     width: 100%;
     text-align: center;
     color: white;
-    font-size: 22px;
+    font-size: 20px;
 }
 
 </style>
 """, unsafe_allow_html=True)
 
-
 # --- UI Input ---
-st.markdown("## 🎂 Enter Your Name For Birthday Wish")
+st.markdown("## 🎂 Enter Your Name to Generate Birthday Card")
 name = st.text_input("Your Name:")
-btn = st.button("Show Birthday Wish 🎉")
+btn = st.button("Create Birthday Card")
 
 if btn and name.strip() != "":
+    
+    # --- Birthday Card ---
     st.markdown(f"""
-    <h1 class="title">🎉 Happy Birthday <span class="name">{name}</span> 🎂</h1>
+    <div class="card">
+        <div class="title">🎉 Happy Birthday</div>
+        <div class="name">{name}</div>
+        <div class="message">Wishing you a year full of joy, success and beautiful memories! 💛</div>
+    </div>
     """, unsafe_allow_html=True)
 
-    # Background music
-    st.audio("https://www.dropbox.com/scl/fi/8s4dq6pr2jke5ihj9tqpt/happy.mp3?rlkey=xyz&raw=1")
-
-    # Balloons animation
+    # --- Balloons Animation ---
     for i in range(20):
-        x = random.randint(10, 90)
-        color = random.choice(["red", "yellow", "cyan", "pink", "violet"])
+        x = random.randint(5, 95)
+        size = random.randint(50, 90)
+        color = random.choice(["#ff4b5c", "#ffcd3c", "#4cd3c2", "#7efff5", "#ff6ec7"])
+
         st.markdown(
             f"""
-            <div class="balloon" style="left:{x}%; bottom:0px; width:60px; height:90px; background:{color}; border-radius:50%;"></div>
+            <div class="balloon" style="
+                left:{x}%;
+                width:{size}px;
+                height:{int(size*1.3)}px;
+                background:{color};
+                border-radius:50%;
+            "></div>
             """,
             unsafe_allow_html=True
         )
-        time.sleep(0.2)
+        time.sleep(0.15)
 
 # Footer
 st.markdown("""
